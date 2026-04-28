@@ -1,1 +1,253 @@
 /* You can add global styles to this file, and also import other style files */
+/* ── Variables ── */
+:root {
+  --color-primario: #1a4a6b;
+  --color-acento: #e8734a;
+  --color-fondo: #f7f5f2;
+  --color-texto: #2c2c2c;
+  --color-texto-suave: #6b6b6b;
+  --color-borde: #e0dbd4;
+  --color-blanco: #ffffff;
+  --color-danger: #c0392b;
+  --fuente-titulo: 'Playfair Display', serif;
+  --fuente-cuerpo: 'Nunito', sans-serif;
+  --radio: 12px;
+  --sombra: 0 4px 20px rgba(0,0,0,0.08);
+  --sidebar-width: 240px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: var(--fuente-cuerpo);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* ── App shell ── */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--color-primario);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  position: fixed;
+  height: 100vh;
+
+  &__logo {
+    font-family: var(--fuente-titulo);
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+  }
+
+  &__nav {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      border-radius: var(--radio);
+      transition: all 0.2s;
+
+      &:hover, &.active {
+        background: rgba(255,255,255,0.15);
+        color: white;
+      }
+    }
+  }
+}
+
+.btn-logout {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: var(--radio);
+  cursor: pointer;
+  width: 100%;
+  &:hover { background: rgba(255,255,255,0.2); }
+}
+
+/* ── Content Area ── */
+.content-area {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 2.5rem;
+}
+
+/* ── Botones ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radio);
+  border: none;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+
+  &--primary {
+    background: var(--color-acento);
+    color: white;
+    &:hover { filter: brightness(1.1); }
+  }
+  &--outline {
+    background: transparent;
+    border: 2px solid var(--color-primario);
+    color: var(--color-primario);
+    &:hover { background: var(--color-primario); color: white; }
+  }
+  &--danger { background: var(--color-danger); color: white; }
+  &--sm { padding: 0.4rem 0.9rem; font-size: 0.85rem; }
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+/* ── Formularios ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+
+  label { font-weight: 600; font-size: 0.9rem; }
+
+  input, select, textarea {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--color-borde);
+    border-radius: var(--radio);
+    font-family: var(--fuente-cuerpo);
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primario);
+    }
+  }
+}
+
+/* ── Cards ── */
+.card-alojamiento {
+  background: white;
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s;
+
+  &:hover { transform: translateY(-3px); }
+
+  h3 { font-family: var(--fuente-titulo); }
+
+  &__amenidades { display: flex; gap: 0.5rem; font-size: 1.2rem; }
+  &__rating { color: var(--color-acento); font-weight: 700; }
+}
+
+.grid-alojamientos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ── Tabla ── */
+.tabla-container {
+  background: white;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  overflow: auto;
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-borde);
+  }
+  th { background: var(--color-fondo); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
+  tr:last-child td { border-bottom: none; }
+}
+
+/* ── Alertas ── */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radio);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+
+  &--error { background: #fdecea; color: var(--color-danger); border-left: 4px solid var(--color-danger); }
+  &--success { background: #eafaf1; color: #1e8449; border-left: 4px solid #1e8449; }
+}
+
+/* ── Login Card ── */
+.login-card {
+  max-width: 420px;
+  margin: 4rem auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+
+  h1 { font-family: var(--fuente-titulo); margin-bottom: 1.5rem; }
+}
+
+/* ── Page header ── */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h2 { font-family: var(--fuente-titulo); font-size: 1.8rem; }
+}
+
+/* ── Filtros ── */
+.filtros-bar {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  background: white;
+  padding: 1.2rem;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+/* ── Paginación ── */
+.paginacion {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* ── Public Layout ── */
+.public-header {
+  background: var(--color-primario);
+  color: white;
+  padding: 1rem 2rem;
+  .logo { font-family: var(--fuente-titulo); font-size: 1.4rem; }
+}
+.public-main { max-width: 600px; margin: 0 auto; padding: 2rem; }

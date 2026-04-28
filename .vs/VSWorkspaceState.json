@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\core",
+    "\\src\\app\\core\\interceptors",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+  "PreviewInSolutionExplorer": false
+}
